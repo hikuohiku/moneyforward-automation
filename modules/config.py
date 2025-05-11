@@ -1,4 +1,3 @@
-from typing import Optional
 from pydantic import DirectoryPath, Field, FilePath, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -15,8 +14,8 @@ class Config(BaseSettings):
     firefox_profile_path: DirectoryPath = Field(
         default=...  # linterのエラー抑制のため https://github.com/pydantic/pydantic-settings/issues/201
     )
-    firefox_binary_path: Optional[FilePath] = Field(default=None)
-    geckodriver_binary_path: Optional[FilePath] = Field(default=None)
+    firefox_binary_path: FilePath = Field(default=...)
+    geckodriver_binary_path: FilePath = Field(default=...)
     mf_accounts_url: HttpUrl = Field(
         default=HttpUrl("https://moneyforward.com/accounts")
     )
