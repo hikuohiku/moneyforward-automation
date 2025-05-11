@@ -9,11 +9,12 @@ import subprocess
 
 def main():
     options = webdriver.FirefoxOptions()
+    options.binary_location = "/etc/profiles/per-user/hikuo/bin/firefox"
     options.add_argument(f"-profile {Config().firefox_profile_path}")
     options.add_argument("--headless")
 
     service = webdriver.FirefoxService(
-        log_output=subprocess.STDOUT, service_args=["--log", "debug"]
+        executable_path="/home/hikuo/.cache/selenium/geckodriver/linux64/0.36.0/geckodriver", log_output=subprocess.STDOUT, service_args=["--log", "debug"]
     )
     driver = webdriver.Firefox(service=service, options=options)
 
