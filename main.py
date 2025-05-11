@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from modules.config import Config
 
 import sys
+import subprocess
 
 
 def main():
@@ -11,7 +12,10 @@ def main():
     options.add_argument(f"-profile {Config().firefox_profile_path}")
     options.add_argument("--headless")
 
-    driver = webdriver.Firefox(options=options)
+    service = webdriver.FirefoxService(
+        log_output=subprocess.STDOUT, service_args=["--log", "debug"]
+    )
+    driver = webdriver.Firefox(service=service, options=options)
 
     driver.get(str(Config().mf_accounts_url))
 
