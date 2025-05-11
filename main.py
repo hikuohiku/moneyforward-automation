@@ -15,7 +15,7 @@ def main():
 
     service = webdriver.FirefoxService(
         executable_path=str(Config().geckodriver_binary_path),
-        log_output=subprocess.STDOUT,
+        # log_output=subprocess.STDOUT,
         # service_args=["--log", "debug"],
     )
     driver = webdriver.Firefox(service=service, options=options)
