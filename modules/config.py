@@ -1,9 +1,10 @@
 from pydantic import DirectoryPath, Field, HttpUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+import os
 
 class Config(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file=os.path.join(os.path.dirname(os.path.abspath(__file__)), "../", ".env"), env_file_encoding="utf-8")
     firefox_profile_path: DirectoryPath = Field(
         default=...  # linterのエラー抑制のため https://github.com/pydantic/pydantic-settings/issues/201
     )
